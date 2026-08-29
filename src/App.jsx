@@ -9,11 +9,33 @@ import {
 import IssueModal from './IssueModal';
 import Login from './Login';
 import Chat from './Chat';
-import { supabase, adminAuthClient } from './lib/supabase';
+import { supabase, adminAuthClient, hasSupabaseEnv } from './lib/supabase';
 import './index.css';
 
 function App() {
   const [session, setSession] = useState(null);
+
+  if (!hasSupabaseEnv) {
+    return (
+      <div style={{ padding: '40px', maxWidth: '600px', margin: '100px auto', textAlign: 'center', backgroundColor: 'var(--bg-panel)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}>
+        <h2 style={{ color: '#ef4444', marginBottom: '16px' }}>Setup Required</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: '1.6' }}>
+          It looks like you deployed to Vercel but forgot to add your Supabase environment variables.
+        </p>
+        <div style={{ textAlign: 'left', backgroundColor: 'var(--bg-app)', padding: '20px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <p style={{ margin: '0 0 12px 0', color: 'var(--text-primary)' }}>Please add these to your Vercel Environment Variables:</p>
+          <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>
+            <li>VITE_SUPABASE_URL</li>
+            <li>VITE_SUPABASE_ANON_KEY</li>
+          </ul>
+        </div>
+        <p style={{ color: 'var(--text-tertiary)', marginTop: '24px', fontSize: '14px' }}>
+          <strong>Important:</strong> You must trigger a new Redeploy in Vercel after saving them!
+        </p>
+      </div>
+    );
+  }
+
   const [activeTab, setActiveTab] = useState('board');
   const [activeSection, setActiveSection] = useState('issues');
   const [tasks, setTasks] = useState([]);
