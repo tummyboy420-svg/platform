@@ -25,8 +25,8 @@ function App() {
         <div style={{ textAlign: 'left', backgroundColor: 'var(--bg-app)', padding: '20px', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <p style={{ margin: '0 0 12px 0', color: 'var(--text-primary)' }}>Please add these to your Vercel Environment Variables:</p>
           <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>
-            <li>VITE_SUPABASE_URL</li>
-            <li>VITE_SUPABASE_ANON_KEY</li>
+            <li>SUPABASE_URL</li>
+            <li>SUPABASE_ANON_KEY</li>
           </ul>
         </div>
         <p style={{ color: 'var(--text-tertiary)', marginTop: '24px', fontSize: '14px' }}>
